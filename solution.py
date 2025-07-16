@@ -86,3 +86,47 @@ class Solution:
                 if nums[i] != nums[j] and nums[i]>nums[j]:
                     arr[i] += 1
         return arr
+
+# 1266. Minimum Time Visiting All Points
+# On a 2D plane, there are n points with integer coordinates points[i] = [xi, yi]. 
+# Return the minimum time in seconds to visit all the points in the order given by points.
+    def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
+
+        res = 0
+        for i in range(len(points)-1):
+            res += max(
+                abs(points[i+1][1]-points[i][1]),
+                abs(points[i+1][0]-points[i][0])
+                )
+        return res
+
+    def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
+
+        res = 0
+        x1,y1 = points.pop()
+        while points:
+            x2, y2 = points.pop()
+            res += max(abs(y2-y1),abs(x2-x1))
+            x1, y1 = x2, y2
+
+        return res
+
+    def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
+
+        res = 0
+        for i in range(len(points)-1):
+            currX, currY = points[i]
+            endX, endY = points[i+1]
+            res += max(abs(endY-currY),abs(endX-currX))
+        return res
+
+
+
+
+
+
+
+
+
+
+
