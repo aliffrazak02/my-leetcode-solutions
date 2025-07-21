@@ -120,7 +120,33 @@ class Solution:
             res += max(abs(endY-currY),abs(endX-currX))
         return res
 
+# 200. Spiral Matrix
+# Given an m x n matrix, return all elements of the matrix in spiral order.
 
+# Optimal Solution
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        ret = []
+
+        # Continue looping until all elements are removed from the matrix
+        while matrix:
+            # Add the first row to the result (left to right)
+            ret += matrix.pop(0)
+
+            # Add the last element of each remaining row (top to bottom)
+            if matrix and matrix[0]:
+                for row in matrix:
+                    ret.append(row.pop())
+
+            # Add the last row in reverse order (right to left)
+            if matrix:
+                ret += matrix.pop()[::-1]
+
+            # Add the first element of each remaining row in reverse order (bottom to top)
+            if matrix and matrix[0]:
+                for row in matrix[::-1]:
+                    ret.append(row.pop(0))
+
+        return ret
 
 
 
