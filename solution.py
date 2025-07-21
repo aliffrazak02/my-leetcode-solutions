@@ -3,7 +3,7 @@ class Solution:
 
 # 448. Find All Numbers Disappeared in an Array
 # Given an array nums of n integers where nums[i] is in the range [1, n], 
-# return an array of all the integers in the range [1, n] that do not appear in nums.
+# Return an array of all the integers in the range [1, n] that do not appear in nums.
 
 # Brute Force Approach, O(n^2) time complexity, O(1) space complexity
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
@@ -24,9 +24,9 @@ class Solution:
         return arr
 
 # 1. Two Sum
-# Given an array of integers nums and an integer target, return indices of the two numbers such
+# Given an array of integers nums and an integer target, return the indices of the two numbers such
 # that they add up to target. You may assume that each input would have exactly one solution
-# and you may not use the same element twice. You can return the answer in any order
+#, and you may not use the same element twice. You can return the answer in any order
 
 
 # Brute Force Approach, O(n^2) time complexity, O(1) space complexity    
@@ -147,6 +147,53 @@ class Solution:
                     ret.append(row.pop(0))
 
         return ret
+
+# 242. Valid Anagram
+# Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+# Sorting solution
+# O(nlogn)
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t) or sorted(s) != sorted(t):
+            return False
+        return True
+    
+# Hashmap solution
+# O(n) pre-proccessing, O(n) comparison
+    def isAnagram(self, s: str, t: str) -> bool:
+        
+        if len(s) != len(t):
+            return False
+            
+        sMap = {}
+        tMap = {}
+        
+        for letter in s:
+            sMap[letter] = sMap.get(letter, 0) + 1
+        
+        for letter in t:
+            tMap[letter] = tMap.get(letter, 0) + 1
+
+        for key in sMap:
+            if sMap[key] != tMap.get(key, 0):
+                return False
+
+        return True
+        
+# Optimized hashmap solution
+# O(n) pre-procesing, O(1) comparison
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        sMap, tMap = {},{}
+
+        for i in range(len(s)):
+            sMap[s[i]] = sMap.get(s[i],0) + 1
+            tMap[t[i]] = tMap.get(t[i],0) + 1
+
+        return sMap == tMap
+
 
 
 
