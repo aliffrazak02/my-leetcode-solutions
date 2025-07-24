@@ -200,7 +200,7 @@ class Solution:
 # Alphanumeric characters include letters and numbers.
 # Given a string s, return true if it is a palindrome, or false otherwise.
 
-# Static sliding window solution, O(n)
+# Two pointer solution, O(n)
     def isPalindrome(self, s: str) -> bool:
         l,r = 0,len(s)-1
         while l < r:
