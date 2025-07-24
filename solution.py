@@ -200,7 +200,7 @@ class Solution:
 # Alphanumeric characters include letters and numbers.
 # Given a string s, return true if it is a palindrome, or false otherwise.
 
-# Two pointer solution, O(n)
+# Two pointer opposite direction solution, O(logn)
     def isPalindrome(self, s: str) -> bool:
         l,r = 0,len(s)-1
         while l < r:
@@ -214,6 +214,19 @@ class Solution:
             r -= 1
         
         return True
+
+# 876. Middle of the Linked List
+# Given the head of a singly linked list, return the middle node of the linked list.
+# If there are two middle nodes, return the second middle node.
+
+# Two pointer one slow, one fast solution, O(n)
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+
 
 
 
